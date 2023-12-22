@@ -22,23 +22,27 @@ print("\nLet's play a simple Game."
       "\nDo you want to guess?"
       "\nIf so Enter you number if not press 'q'.")
 
+secret_number = random.randint(1,10)            # This is how we represent the random secret Number.
 
 try:            # Simple Exception for when The Person Playing Want's To Exit The Game/Program.
+
     while True:
+
         number = input('\nEnter your number Here: ')         # Asking for the number.
-        secret_number = random.randint(1,10)            # This is how we represent the random secret Number.
-        print(f'My number was: {secret_number}.')
-        #if number is str():
-        #   print('Please Enter a Number:')
         if int(number) == secret_number:
-            print (f'\nYou are Correct, {names[-1].title()}! {number} was the correct number!'
+            print (f'\nYou are Correct, {names[-1].title()}! The Number I was thinking was: {number}!'
                 f'\nYou Won!')
             print(f'\nThank you for playing My First Game my lovely {names[-1].title()}!')
             sys.exit()
+        elif int(number) > secret_number:
+            print('My number is smaller.')
+        elif int(number) < secret_number:
+            print('My number is bigger.')
         elif number != secret_number:
             print('Please Try Again by entering another number or type "q" to Quit.')
         elif number == 'q':
             sys.exit()
+
 except ValueError:
     print(f'\nThank you for playing My First Game my lovely {names[-1].title()}!'
           f'\nYou need to Enter a Number not a Letter, try again Later.')

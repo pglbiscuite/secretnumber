@@ -24,22 +24,32 @@ print("\nLet's play a simple Game."
 
 secret_number = random.randint(1,10)            # This is how we represent the random secret Number.
 
-try:            # Simple Exception for when The Person Playing Want's To Exit The Game/Program.
+try:            # Simple Exception for when The Person Playing Want's To Exit The Game/Program or Presses a Letter.
 
     while True:
 
         number = input('\nEnter your number Here: ')         # Asking for the number.
-        if int(number) == secret_number:
+
+        if number.isdigit() and int(number) == secret_number :          # Using the isdigit() method to check for str()
             print (f'\nYou are Correct, {names[-1].title()}! The Number I was thinking was: {number}!'
                 f'\nYou Won!')
             print(f'\nThank you for playing My First Game my lovely {names[-1].title()}!')
             sys.exit()
+        elif number.isalpha():          # Using the isalpha() method to prompt the user if they entered a letter.
+            if number == 'q':
+                print(f'\nThank you for playing My First Game my lovely {names[-1].title()}!')
+                break
+            if len(number) <= 1:
+                print('You have entered a letter please choose a number between 1 and 10.')
+            elif len(number) > 1:
+                print('You have entered letters please choose a number between 1 and 10.')
         elif int(number) > secret_number:
             print('My number is smaller.')
         elif int(number) < secret_number:
             print('My number is bigger.')
         elif number != secret_number:
             print('Please Try Again by entering another number or type "q" to Quit.')
+
         elif number == 'q':
             sys.exit()
 
